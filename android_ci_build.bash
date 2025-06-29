@@ -31,5 +31,3 @@ cmake_build () {
 }
 
 cmake_build arm64-v8a
-   
-done
