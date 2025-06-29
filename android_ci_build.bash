@@ -3,8 +3,6 @@ set -e
 
 sudo su
 
-TARGETS="armeabi-v7a x86 arm64-v8a x86_64 "
-
 <<EOF
 if ! command -v ccache &> /dev/null; then
       echo "安装 ccache..."
@@ -33,6 +31,6 @@ cmake_build () {
 }
 
 
- cmake -B build -DANDROID_ABI=${TARGET}
+cmake_build arm64-v8a x86_64
    
 done
