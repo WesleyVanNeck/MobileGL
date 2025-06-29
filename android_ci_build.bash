@@ -33,7 +33,7 @@ cmake_build () {
 for TARGET in ${TARGETS}
 do    
     # create one build dir per target architecture
-    mkdir -p ${BUILD_PATH}/${TARGET}
+  sudo  mkdir -p ${BUILD_PATH}/${TARGET}
     cd ${BUILD_PATH}/${TARGET}
 	
 	
