@@ -30,15 +30,6 @@ cmake_build () {
   $ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip $GITHUB_WORKSPACE/build/libMobileGL.so
 }
 
-for TARGET in ${TARGETS}
-do    
-    # create one build dir per target architecture
-    mkdir -p ${BUILD_PATH}/${TARGET}
-    cd ${BUILD_PATH}/${TARGET}
-	
-	
-cmake_build -DANDROID_ABI=${TARGET}
-
 cmake_build arm64-v8a
    
 done
