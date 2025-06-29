@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+sudo su
+
 TARGETS="armeabi-v7a x86 arm64-v8a x86_64 "
 
 <<EOF
@@ -23,7 +25,7 @@ EOF
 cmake_build () {
   ANDROID_ABI=$1
   ANDROID_TARGET=$2
- sudo mkdir -p build
+  mkdir -p build
   cd build
   cmake $GITHUB_WORKSPACE -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/build -DPATHFINDER_TARGET=$ANDROID_TARGET -DANDROID_PLATFORM=29 -DCMAKE_BUILD_TYPE=Release -DCMAKE_AR=$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar -DCMAKE_RANLIB=$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib -DANDROID_ABI=$ANDROID_ABI -DCMAKE_SYSTEM_NAME=Android -DANDROID_TOOLCHAIN=clang -DANDROID_ARM_MODE=arm -DCMAKE_MAKE_PROGRAM=$ANDROID_NDK_LATEST_HOME/prebuilt/linux-x86_64/bin/make -DCMAKE_SYSTEM_NAME=Android -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake
   cmake --build . --config Release --parallel $(nproc)
@@ -33,7 +35,7 @@ cmake_build () {
 for TARGET in ${TARGETS}
 do    
     # create one build dir per target architecture
-  sudo  mkdir -p ${BUILD_PATH}/${TARGET}
+    mkdir -p ${BUILD_PATH}/${TARGET}
     cd ${BUILD_PATH}/${TARGET}
 	
 	
