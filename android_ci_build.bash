@@ -33,6 +33,6 @@ cmake_build () {
 }
 
 
-cmake_build -DANDROID_ABI=${TARGET}
+ cmake -B build -DANDROID_ABI=${TARGET}
    
 done
