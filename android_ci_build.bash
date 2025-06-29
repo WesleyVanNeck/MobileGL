@@ -39,5 +39,6 @@ do
 	
 cmake_build -DANDROID_ABI=${TARGET}
 
-    cd -    
+cmake_build arm64-v8a
+   
 done
